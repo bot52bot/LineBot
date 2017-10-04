@@ -125,10 +125,10 @@ def SEND_MESSAGE(op):
             if msg.contentType == 0:
                 if msg.text == "mid":
                     sendMessage(msg.to, msg.to)
-                if msg.text == "Gw":
+                if msg.text == "me":
                     sendMessage(msg.to, text=None, contentMetadata={'mid': msg.from_}, contentType=13)
-                if msg.text == "Kirim Hadiah":
-                    sendMessage(msg.to, text="Hadiah Terkirim", contentMetadata=None, contentType=9)
+                if msg.text == "gift":
+                    sendMessage(msg.to, text="gift send", contentMetadata=None, contentType=9)
                 else:
                     pass
             else:
@@ -141,13 +141,13 @@ def SEND_MESSAGE(op):
                     sendMessage(msg.to, msg.to)
                 if msg.text == "Info Group":
                     group = client.getGroup(msg.to)
-                    md = "[Group Name]\n" + group.name + "\n\n[gid]\n" + group.id + "\n\n[Group Picture]\nhttp://dl.profile.line-cdn.net/" + group.pictureStatus
-                    if group.preventJoinByTicket is False: md += "\n\nInvitationURL: Permitted\n"
-                    else: md += "\n\nInvitationURL: Refusing\n"
+                    md = "[Nama Group]\n" + group.name + "\n\n[ID Group]\n" + group.id + "\n\n[Group Picture]\nhttp://dl.profile.line-cdn.net/" + group.pictureStatus
+                    if group.preventJoinByTicket is False: md += "\n\nInvitationURL: Di Izinkan\n"
+                    else: md += "\n\nInvitationURL: Di Tolak\n"
                     if group.invitee is None: md += "\nMembers: " + str(len(group.members)) + "Orang\n\nPending: 0 Orang"
                     else: md += "\nMembers: " + str(len(group.members)) + "Orang\nPending: " + str(len(group.invitee)) + "Orang"
                     sendMessage(msg.to,md)
-                if "Gn:" in msg.text:
+                if "Gn" in msg.text:
                     key = msg.text[22:]
                     group = client.getGroup(msg.to)
                     group.name = key
